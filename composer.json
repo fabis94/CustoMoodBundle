@@ -1,0 +1,25 @@
+{
+    "name" : "customood/appbundle",
+    "description" : "CustoMood App bundle",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "Kristaps Fabians Geikins",
+        "email" : "kristaps.geikins@outlook.com"
+    }],
+    "keywords" : [
+        "customood symfony bundle"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-0" : {
+            "CustoMood\\Bundle\\AppBundle" : ""
+        }
+    },
+    "target-dir" : "CustoMood/Bundle/AppBundle",
+    "repositories" : [{
+    }]
+}

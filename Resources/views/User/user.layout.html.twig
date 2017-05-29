@@ -1,0 +1,23 @@
+{% extends "CustoMoodAppBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="row col col-12 align-center">
+        <section class="menu menu-left col col-4">
+            <div class="menu-wrapper">
+                <div class="title-wrapper">
+                    <h3 class="title">{{ title }}</h3>
+                    <span class="toggle show-sm"><a href="javascript:;" data-component="toggleme" data-target="#menu">Toggle</a></span>
+                </div>
+                <ul id="menu" class="hide-sm">
+                    <li><a href="{{ path('user_index') }}">Account info</a></li>
+                    <li><a href="{{ path('user_edit') }}">Edit info</a></li>
+                    <li><a href="{{ path('user_logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </section>
+        <div class="main-column main-right col col-8">
+            {% block maincontent %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

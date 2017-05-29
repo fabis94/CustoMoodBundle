@@ -1,0 +1,52 @@
+{% extends "CustoMoodAppBundle::Admin/admin.layout.html.twig" %}
+{% set title = "Adapters" %}
+{% block title title %}
+
+{% block maincontent %}
+    <h1>{{ title }}</h1>
+    <div class="table-wrapper adapter-listing">
+        {{ form_start(form) }}
+        <table>
+            <thead>
+                <tr>
+                    <th class="w90">Info</th>
+                    <th class="w10 action">Enabled</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if form.adapters is empty or adapters is empty %}
+                <tr>
+                    <td>
+                        <em>No adapters have been found. Make sure they are installed properly.</em>
+                    </td>
+                    <td></td>
+                </tr>
+            {% else %}
+                {% for adapter in form.adapters %}
+                    {% set adapterInfo = adapters[adapter.vars.value.id] %}
+                    <tr>
+                        <td>
+                            <div class="adapter-info-block">
+                                <div class="info-header">
+                                    <span class="name">{{ adapterInfo.displayName }}</span>
+                                    <span class="version muted">{{ "v%g"|format(adapterInfo.version) }}</span>
+                                    <span class="author"><b>Author:</b> <a href="{{ adapterInfo.website }}">{{ adapterInfo.author }}</a></span>
+                                </div>
+                                <div class="info-main hide-sm">
+                                    {{ adapterInfo.description }}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="action">
+                            {{ form_widget(adapter.enabled) }}
+                            {{ form_widget(adapter.id) }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+        {{ form_row(form.save) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

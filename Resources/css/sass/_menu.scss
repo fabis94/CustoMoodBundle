@@ -1,0 +1,68 @@
+section.menu {
+    @include default-padding;
+    @include breakpoint($sm+1) {
+        &.menu-left {
+            padding-left: 0;
+        }
+
+        &.menu-right {
+            padding-right: 0;
+        }
+    }
+
+    .menu-wrapper {
+        background-color: $main-blue-2;
+        padding: $base-line-small;
+        max-width: 400px;
+        margin: 0 auto;
+
+        @include breakpoint(sm) {
+            max-width: inherit;
+        }
+
+        .title-wrapper {
+            text-align: center;
+            line-height: $heading-base-line-4;
+            position: relative;
+
+            @include breakpoint(sm) {
+                text-align: left;
+            }
+
+            .title {
+                display: inline;
+                margin: 0;
+            }
+
+            .toggle {
+                font-size: $font-size-small;
+                position: absolute;
+                right: 0;
+
+                a,a:hover {
+                    text-decoration: none;
+                    color: $color-midgray;
+                }
+            }
+
+            @include clearfix;
+        }
+
+        ul {
+            margin-top: $base-line-small;
+
+            li {
+                list-style: square;
+
+                a,a:hover {
+                    text-decoration: none;
+                    color: $color-black;
+                }
+
+                a:hover {
+                    color: $color-midgray;
+                }
+            }
+        }
+    }
+}

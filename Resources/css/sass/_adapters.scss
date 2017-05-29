@@ -1,0 +1,14 @@
+.adapter-listing {
+    .adapter-info-block {
+        .info-header {
+            .name {
+                font-size: $font-size-big;
+                font-weight: bold;
+            }
+
+            .author {
+                display: block;
+            }
+        }
+    }
+}

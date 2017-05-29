@@ -1,0 +1,21 @@
+{% extends "CustoMoodAppBundle::Admin/admin.layout.html.twig" %}
+{% set title = "Admin dashboard" %}
+{% block title title %}
+
+{% block maincontent %}
+    <h1>{{ title }}</h1>
+    <div class="table-wrapper admin-dashboard">
+        <table class="unstyled">
+            <tr>
+                <td class="w80">
+                    Clear all adapter metadata. Use this when the metadata has gotten corrupt due to multiple adapters with the same ID or something else.
+                </td>
+                <td class="w20 text-center vertical-center">
+                    {{ form_start(forms.clear_all_metadata) }}
+                    {{ form_widget(forms.clear_all_metadata) }}
+                    {{ form_end(forms.clear_all_metadata) }}
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

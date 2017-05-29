@@ -1,0 +1,19 @@
+{% extends "CustoMoodAppBundle::Admin/admin.layout.html.twig" %}
+{% block title title %}
+
+{% block maincontent %}
+    {% if not disabled|default %}
+        <h1>{{ title }}</h1>
+        {% if project is defined %}
+            <div class="main-buttons left">
+                <a href="{{ path('admin_project_all') }}" class="button outline">Back</a>
+                <a href="{{ path('admin_project_settings_edit', {'pid':project.id}) }}" class="button outline">Change adapter settings</a>
+            </div>
+        {% endif %}
+        <div class="form-wrapper">
+            {{ form_start(form, {'attr':{'class':'medium'}}) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    {% endif %}
+{% endblock %}

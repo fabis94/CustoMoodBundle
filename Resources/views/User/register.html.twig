@@ -1,0 +1,22 @@
+{% extends "CustoMoodAppBundle::layout.html.twig" %}
+{% set title = "Register" %}
+{% block title title %}
+
+{% block content %}
+    <div class="row col col-12 align-center">
+        <div class="main-column col col-8">
+            {% if not disabled|default %}
+                <h1>{{ title }}</h1>
+                <div class="form-wrapper">
+                    {{ form_start(form, {'attr':{'class':'medium'}}) }}
+                    {{ form_row(form.username) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.plainPassword.first) }}
+                    {{ form_row(form.plainPassword.second) }}
+                    <button type="submit">Register!</button>
+                    {{ form_end(form) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

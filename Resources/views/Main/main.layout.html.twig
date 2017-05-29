@@ -1,0 +1,28 @@
+{% extends "CustoMoodAppBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="row col col-12 align-center">
+        <section class="menu menu-left col col-4">
+            <div class="menu-wrapper">
+                <div class="title-wrapper">
+                    <h3 class="title">{{ title }}</h3>
+                    <span class="toggle show-sm"><a href="javascript:;" data-component="toggleme" data-target="#menu">Toggle</a></span>
+                </div>
+                <ul id="menu" class="hide-sm">
+                    {% set projects = projects() %}
+                    {% if projects|length > 0 %}
+                        {% for project in projects %}
+                            <li><a href="{{ path('homepage_view_project', {'pid' : project.id }) }}">{{ project.name }}</a></li>
+                        {% endfor %}
+                    {% else %}
+                        <li><em>No projects available</em></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </section>
+        <div class="main-column main-right col col-8">
+            {% block maincontent %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CustoMood - {% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('bundles/customoodapp/css/kube.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/customoodapp/css/main.css') }}">
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+<body>
+    <section class="main-nav row align-center">
+        <div class="main-nav-content row col col-8" id="collapsable-nav" data-component="collapse">
+            <div class="nav-brand">
+                <a href="#nav-items" class="collapse-toggle show-sm">
+                    CM <span class="caret down"></span>
+                </a>
+                <a href="javascript:;" class="hide-sm">
+                    CM
+                </a>
+            </div>
+            <nav class="nav-main collapse-box hide" id="nav-items">
+                <ul>
+                    <li><a href="{{ path('homepage') }}">Home</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('admin_index') }}">Admin</a></li>
+                    {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <li class="float-right"><a href="{{ path('user_logout') }}">Logout</a></li>
+                        <li class="float-right"><a href="{{ path('user_index') }}">Account</a></li>
+                    {% else %}
+                        <li class="float-right"><a href="{{ path('user_login') }}">Login</a></li>
+                        <li class="float-right"><a href="{{ path('user_register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <main class="row">
+        {% block globalmessage %}
+            {% if app.session.flashBag.peekAll|length > 0 %}
+                <div class="global-messages-wrapper w100">
+                    {% for type, flash_messages in app.session.flashBag.all %}
+                        {% for flash_message in flash_messages %}
+                            <div class="w100 global message {{ type }}" data-component="message">
+                                {{ flash_message|raw }}
+                                <span class="close small"></span>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endblock %}
+        {% block content %}
+            <div class="row col col-12 align-center">
+                <div class="main-column w100 simple-content">
+                    <h1>{{ block('title') }}</h1>
+                    {% block simplecontent %}
+                        <p>Page is empty.</p>
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+    <footer class="row">
+        <div class="disclaimer">&copy; Kristaps Fabiāns Geikins 2017. All rights reserved.</div>
+    </footer>
+    <script src="{{ asset('bundles/customoodapp/js/allscripts.min.js') }}"></script>
+    {% block javascripts %}
+    {% endblock %}
+</body>
+</html>

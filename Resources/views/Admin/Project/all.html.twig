@@ -1,0 +1,69 @@
+{% extends "CustoMoodAppBundle::Admin/admin.layout.html.twig" %}
+{% set title = "Projects" %}
+{% block title title %}
+
+{% block maincontent %}
+    <h1>
+        {{ title }}
+    </h1>
+    <div class="main-buttons">
+        {% if adapters_available() %}
+            <a href="{{ path('admin_project_new') }}" class="button outline">Create new project</a>
+        {% endif %}
+    </div>
+    <div class="table-wrapper project-listing">
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="w80">Info</th>
+                    <th class="w10 action">Edit</th>
+                    <th class="w10 action">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if projects is empty %}
+                    <tr>
+                        <td>
+                            <em>No projects have been created yet. Go ahead and create one if you have any adapters installed.</em>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                {% else %}
+                    {% for project in projects %}
+                        <tr>
+                            <td>
+                                <div class="project-info-block">
+                                    <div class="header">
+                                        <div class="info-row">
+                                            <span class="title">{{ project.name }}</span>
+                                            {% if not project.enabled %}
+                                                <span class="label upper">Disabled</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="info-row">
+                                            <b>Adapter:</b> {{ project.adapterId|adapter_name }}
+                                        </div>
+                                    </div>
+                                    <div class="info-row hide-sm">
+                                        {{ project.description }}
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="muted smaller">Created on {{ project.createdAt|date('d-m-Y')  }} | Updated on {{ project.updatedAt|date('d-m-Y') }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="action">
+                                <a href="{{ path('admin_project_edit', {'pid' : project.id}) }}" class="button">Edit</a>
+                            </td>
+                            <td class="action">
+                                <a href="{{ path('admin_project_delete', {'pid' : project.id}) }}" class="button">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

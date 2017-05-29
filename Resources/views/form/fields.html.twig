@@ -1,0 +1,76 @@
+{# Global form customizations #}
+{# Rows #}
+
+{%- block form_row -%}
+    <div class="form-row">
+        {{- form_label(form) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock form_row -%}
+
+{%- block button_row -%}
+    <div class="form-row button-row">
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock button_row -%}
+
+{# Widgets #}
+
+{%- block form_widget_simple -%}
+    {#{%- if errors|length > 0 -%}#}
+        {#{% if attr.class is defined %}#}
+            {#{% set attr = attr|merge({'class':attr.class ~ " error" }) %}#}
+        {#{% else %}#}
+            {#{% set attr = attr|merge({'class':"error" }) %}#}
+        {#{% endif %}#}
+    {#{%- endif -%}#}
+    {%- set type = type|default('text') -%}
+    {#{% if type == 'date' %}#}
+        {#{% set type = 'text' %}#}
+        {#{% set attr = attr|merge({'data-toggle':"datepicker" }) %}#}
+    {#{% endif %}#}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple -%}
+
+{# Labels #}
+
+{%- block form_label -%}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <label{% if label_attr %} {% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+            {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }} {% if required %}<span class="req">*</span>{% endif %}
+        </label>
+    {%- endif -%}
+{%- endblock form_label -%}
+
+
+{# Errors #}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <div class="message error" data-component="message">
+            <ul>
+                {%- for error in errors -%}
+                    <li>{{ error.message }}</li>
+                {%- endfor -%}
+            </ul>
+            <span class="close small"></span>
+        </div>
+    {%- endif -%}
+{%- endblock form_errors -%}

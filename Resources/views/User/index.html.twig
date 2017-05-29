@@ -1,0 +1,13 @@
+{% extends "CustoMoodAppBundle::User/user.layout.html.twig" %}
+{% set title = "Account info" %}
+{% block title title %}
+
+{% block maincontent %}
+    {% set welcome_message = get_setting_value('welcome_message') %}
+    {% set welcome_message = welcome_message ? welcome_message : "Hi, " ~ app.user.username %}
+    <h1>{{ welcome_message }}</h1>
+    <p>
+        Your username: {{ app.user.username }} <br>
+        Your email: {{ app.user.email }}
+    </p>
+{% endblock %}

@@ -1,0 +1,30 @@
+services:
+    customood.settings:
+        class: CustoMood\Bundle\AppBundle\Service\SettingsService
+        arguments: ['@doctrine']
+    customood.adapter:
+        class: CustoMood\Bundle\AppBundle\Service\AdapterService
+        arguments: ['%kernel.root_dir%', '@doctrine']
+    customood.analysis:
+        class: CustoMood\Bundle\AppBundle\Service\AnalysisService
+        arguments: []
+    customood.project.form_type:
+        class: CustoMood\Bundle\AppBundle\Form\ProjectType
+        arguments: ['@customood.adapter']
+        tags:
+            - { name: form.type }
+    customood.settings.twig:
+        class: CustoMood\Bundle\AppBundle\Twig\SettingsExtension
+        arguments: ['@customood.settings']
+        tags:
+            - { name: twig.extension }
+    customood.adapters.twig:
+        class: CustoMood\Bundle\AppBundle\Twig\AdapterExtension
+        arguments: ['@customood.adapter']
+        tags:
+            - { name: twig.extension }
+    customood.projects.twig:
+        class: CustoMood\Bundle\AppBundle\Twig\ProjectExtension
+        arguments: ['@doctrine', '@customood.adapter']
+        tags:
+            - { name: twig.extension }

@@ -1,0 +1,22 @@
+<?php
+
+namespace CustoMood\Bundle\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ProjectSetting
+ *
+ * @ORM\Table(name="project_setting")
+ * @ORM\Entity(repositoryClass="CustoMood\Bundle\AppBundle\Repository\ProjectSettingRepository")
+ */
+class ProjectSetting extends Setting
+{
+    /**
+     * @var int
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="settings")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     */
+    protected $project;
+}
+

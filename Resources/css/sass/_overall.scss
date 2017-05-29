@@ -1,0 +1,177 @@
+body {
+    @include flex;
+    @include flex-items-column;
+    min-height: 100vh;
+
+    .padded {
+        padding: $base-line-smaller;
+    }
+
+    .main-nav {
+        $nav-color: $main-blue-4;
+        $nav-color-2: $main-blue-7;
+        $nav-color-3: $main-blue-5;
+        $text-color: $color-black;
+
+        background-color: $nav-color;
+        color: $text-color;
+
+        .main-nav-content {
+            @include default-padding;
+            $item-margin: $base-line-smaller;
+            $item-margin-big: $base-line-xxl;
+
+            .nav-brand {
+                font-size: $heading-font-size-2;
+                margin-right: $item-margin;
+
+                @include breakpoint(sm) {
+                    margin-right: 0;
+                }
+
+                a, a:hover {
+                    color: $text-color;
+                    font-weight: bold;
+                    text-decoration: none;
+                }
+            }
+
+            nav.nav-main {
+                @include flex-item-grow(1);
+
+                margin: 0;
+                background-color: inherit;
+
+                @include breakpoint(sm) {
+                    margin: ($item-margin - 5px) (-$default-base-line) (-$default-base-line);
+                    background-color: $nav-color-2;
+
+                    ul li {
+                        padding-left: $default-base-line;
+                        padding-right: $default-base-line;
+
+                        &:nth-of-type(odd) {
+                            background-color: $nav-color-3;
+                        }
+                    }
+                }
+
+                ul {
+                    li {
+                        float: left;
+                        margin-right: $item-margin;
+
+                        &:not(.float-right):last-of-type {
+                            margin-right: 0;
+                        }
+
+                        &.float-right {
+                            float: right;
+                        }
+
+                        a,a:hover {
+                            color: $color-black;
+                            text-decoration: none;
+                        }
+                    }
+
+                    @include breakpoint(sm) {
+                        li {
+                            float: none;
+                            padding-bottom: $item-margin / 2;
+                            padding-top: $item-margin / 2;
+                            margin: 0;
+
+                            &.float-right {
+                                float: none;
+                            }
+                        }
+                    }
+
+                    @include clearfix;
+                }
+            }
+
+            @include breakpoint($sm + 1) {
+                #nav-items {
+                    display: block !important;
+                }
+            }
+
+            @include breakpoint(lg) {
+                .nav-brand {
+                    margin-right: $item-margin-big;
+                }
+
+                nav.nav-main ul li {
+                    margin-right: $item-margin-big;
+                }
+            }
+        }
+    }
+
+    main {
+        @include flex-item-grow(1);
+        @include default-padding;
+
+        align-content: flex-start;
+
+        .global-messages-wrapper {
+            div {
+                margin-bottom: $base-line-smaller;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .main-buttons {
+            a {
+                margin-bottom: $default-base-line;
+
+                @include breakpoint(sm) {
+                    display: block;
+                    width: 100%;
+
+                    margin-top: $default-base-line;
+                    margin-bottom: $default-base-line;
+                }
+            }
+
+            &:not(.left) {
+                a {
+                    float: right;
+                }
+            }
+
+            @include clearfix;
+        }
+
+        .main-column {
+            padding: $base-line-smaller;
+
+            @include breakpoint($sm+1) {
+                &.main-left {
+                    padding-left: 0;
+                }
+
+                &.main-right {
+                    padding-right: 0;
+                }
+            }
+
+            @include breakpoint($lg2) {
+                &.main-right {
+                    max-width: 900px;
+                }
+            }
+        }
+    }
+
+    footer {
+        @include default-padding;
+        background-color: $color-aluminum;
+        font-size: $font-size-small;
+    }
+}

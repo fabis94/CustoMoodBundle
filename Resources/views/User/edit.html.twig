@@ -1,0 +1,19 @@
+{% extends "CustoMoodAppBundle::User/user.layout.html.twig" %}
+{% set title = "Edit info" %}
+{% block title title %}
+
+{% block maincontent %}
+    <h1>{{ title }}</h1>
+    <div class="form-wrapper">
+        <h3>Edit email</h3>
+        {{ form_start(user_email_form, {'attr':{'class':'medium'}}) }}
+        {{ form_widget(user_email_form) }}
+        {{ form_end(user_email_form) }}
+    </div>
+    <div class="form-wrapper">
+        <h3>Edit password</h3>
+        {{ form_start(user_password_form, {'attr':{'class':'medium'}}) }}
+        {{ form_widget(user_password_form) }}
+        {{ form_end(user_password_form) }}
+    </div>
+{% endblock %}

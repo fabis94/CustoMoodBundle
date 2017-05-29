@@ -1,0 +1,23 @@
+// COLORS
+$main-blue-1: #d2e3f7;
+$main-blue-2: #b7d4f2;
+$main-blue-3: #99c2ec;
+$main-blue-4: #8fbcea;
+$main-blue-5: #6fa8e5;
+$main-blue-6: #4f96df;
+$main-blue-7: #5398df;
+$main-blue-8: #2f82d9;
+$main-blue-9: #096bd2;
+
+// BASELINE
+$default-base-line: $base-line-smaller;
+
+// MIXINS
+@mixin default-padding {
+    padding: $default-base-line;
+}
+
+// GENERAL USAGE CLASSES
+.vertical-center {
+    vertical-align: middle;
+}

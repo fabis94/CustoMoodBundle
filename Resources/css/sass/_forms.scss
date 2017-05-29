@@ -1,0 +1,15 @@
+form {
+    div.form-row {
+        margin-bottom: $base-line;
+
+        .message ul {
+            margin-bottom: 0;
+        }
+    }
+
+    &.medium {
+        div.form-row {
+            max-width: 800px;
+        }
+    }
+}

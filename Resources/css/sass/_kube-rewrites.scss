@@ -1,0 +1,20 @@
+// Fixing min-width/max-width breakpoint issues which are apparent on screens with size 768px
+// min-width: x = from x not including
+// max-width: x = up to x including
+@media (max-width: 768px) {
+    .show-sm {
+        display: inline-block !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .tabs ul {
+        display: inherit;
+        margin-top: inherit;
+        border-bottom: inherit;
+    }
+    .tabs li em,
+    .tabs li.active a {
+        border-bottom: inherit;
+    }
+}
